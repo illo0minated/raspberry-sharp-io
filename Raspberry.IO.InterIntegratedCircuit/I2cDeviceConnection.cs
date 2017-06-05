@@ -62,7 +62,15 @@ namespace Raspberry.IO.InterIntegratedCircuit
         /// <param name="buffer">The buffer.</param>
         public void Write(params byte[] buffer)
         {
-            Execute(new I2cTransaction(new I2cWriteAction(buffer)));
+            //jj Added try catch
+            try
+            {
+                Execute(new I2cTransaction(new I2cWriteAction(buffer)));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Execute error {0}", e.Message);
+            }
         }
 
         /// <summary>
@@ -71,7 +79,15 @@ namespace Raspberry.IO.InterIntegratedCircuit
         /// <param name="value">The value.</param>
         public void WriteByte(byte value)
         {
-            Execute(new I2cTransaction(new I2cWriteAction(value)));
+            //JJ Added Try catch
+            try
+            {
+                Execute(new I2cTransaction(new I2cWriteAction(value)));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Execute error WriteByte {0}", e.Message);
+            }
         }
 
         /// <summary>
@@ -82,8 +98,15 @@ namespace Raspberry.IO.InterIntegratedCircuit
         public byte[] Read(int byteCount)
         {
             var readAction = new I2cReadAction(new byte[byteCount]);
-            Execute(new I2cTransaction(readAction));
 
+            try
+            {
+                Execute(new I2cTransaction(readAction));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Execute error Read {0}", e.Message);
+            }
             return readAction.Buffer;
         }
 
