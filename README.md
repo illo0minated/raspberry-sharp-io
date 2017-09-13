@@ -23,7 +23,7 @@ Features
 
 ### Raspberry.IO.GeneralPurpose
 Raspberry.IO.GeneralPurpose provides a convenient way to use Raspberry Pi GPIO pins, while using .NET concepts, syntax and case.
-You can easily add a reference to it in your Visual Studio projects using the **[Raspberry.IO.GeneralPurpose Nuget](https://www.nuget.org/packages/Raspberry.IO.GeneralPurpose)**.
+You can easily add a reference to it in your Visual Studio projects using the **[Raspberry.IO.GeneralPurpose Nuget](https://www.nuget.org/packages/Raspberry.IO.GeneralPurpose3)**.
 
 It currently support the following features:
 
@@ -43,12 +43,15 @@ High-level:
 + **High-level behaviors** for output pins, including *blink*, *pattern* and *chaser*
 
 ### Raspberry.IO.SerialPeripheralInterface
+You can easily add a reference to it in your Visual Studio projects using the **[Raspberry.IO.Raspberry.IO.SerialPeripheralInterface Nuget](https://www.nuget.org/packages/Raspberry.IO.SerialPeripheralInterface3)**.
+
 
 + Preliminary support for SPI through Raspberry.IO.SerialPeripheralInterface assembly
 + Includes SPI samples for MCP3008 ADC and MCP4822 DAC
 + Includes support for Linux's kernel SPI module driver spi-bcm2708 (/dev/spidev0.0)
 
 ### Raspberry.IO.InterIntegratedCircuit
+You can easily add a reference to it in your Visual Studio projects using the **[Raspberry.IO.Raspberry.IO.InterIntegratedCircuit Nuget](https://www.nuget.org/packages/Raspberry.IO.InterIntegratedCircuit3)**.
 
 + Preliminary support for I2C through Raspberry.IO.InterIntegratedCircuit assembly
 + Includes I2C sample for MCP23017 I/O expander 
