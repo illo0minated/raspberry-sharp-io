@@ -65,6 +65,7 @@
     <Compile Include="I2cReadAction.cs" />
     <Compile Include="I2cTransaction.cs" />
     <Compile Include="I2cWriteAction.cs" />
+    <Compile Include="I2cWriteReadAction.cs" />
     <Compile Include="Interop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
