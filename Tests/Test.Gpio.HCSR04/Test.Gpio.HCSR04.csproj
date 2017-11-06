@@ -70,14 +70,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Raspberry.System, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Raspberry.System3.3.0.1\lib\net40\Raspberry.System.dll</HintPath>
+    <Reference Include="Raspberry.System, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Raspberry.System3.3.1.1\lib\net40\Raspberry.System.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="UnitsNet, Version=3.46.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\UnitsNet.3.46.1\lib\net35\UnitsNet.dll</HintPath>
+    <Reference Include="UnitsNet, Version=3.77.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UnitsNet.3.77.0\lib\net35\UnitsNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -104,6 +104,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Test.Gpio.HCSR04.fzz" />
   </ItemGroup>
