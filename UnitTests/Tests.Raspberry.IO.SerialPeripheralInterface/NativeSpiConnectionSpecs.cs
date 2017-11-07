@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using FakeItEasy;
-using FakeItEasy.ExtensionSyntax.Full;
 using FluentAssertions;
 using NUnit.Framework;
 using Raspberry.IO.SerialPeripheralInterface;
@@ -40,39 +39,37 @@ namespace Tests.Raspberry.IO.SerialPeripheralInterface.NativeSpiConnectionSpecs
         [Test]
         public void Should_it_write_the_max_speed_in_Hz_to_the_control_device() {
             UInt32 speed = SPEED_IN_HZ;
-            
-            controlDevice
-                .CallsTo(device => device.Control(NativeSpiConnection.SPI_IOC_WR_MAX_SPEED_HZ, ref speed))
-                .MustHaveHappened(Repeated.Exactly.Once);
 
-            controlDevice
-                .CallsTo(device => device.Control(NativeSpiConnection.SPI_IOC_RD_MAX_SPEED_HZ, ref speed))
-                .MustHaveHappened(Repeated.Exactly.Once);
+            A.CallTo( () => controlDevice.Control( NativeSpiConnection.SPI_IOC_WR_MAX_SPEED_HZ, ref speed ) )
+                .MustHaveHappened( Repeated.Exactly.Once );
+
+            A.CallTo( () => controlDevice.Control( NativeSpiConnection.SPI_IOC_WR_MAX_SPEED_HZ, ref speed ) )
+                .MustHaveHappened( Repeated.Exactly.Once );
+
+            A.CallTo( () => controlDevice.Control( NativeSpiConnection.SPI_IOC_RD_MAX_SPEED_HZ, ref speed ) )
+                .MustHaveHappened( Repeated.Exactly.Once );
         }
 
         [Test]
-        public void Should_it_write_the_bits_per_word_to_the_control_device() {
+        public void Should_it_write_the_bits_per_word_to_the_control_device()
+        {
             byte bitsPerWord = BITS_PER_WORD;
-            
-            controlDevice
-                .CallsTo(device => device.Control(NativeSpiConnection.SPI_IOC_WR_BITS_PER_WORD, ref bitsPerWord))
-                .MustHaveHappened(Repeated.Exactly.Once);
 
-            controlDevice
-                .CallsTo(device => device.Control(NativeSpiConnection.SPI_IOC_RD_BITS_PER_WORD, ref bitsPerWord))
-                .MustHaveHappened(Repeated.Exactly.Once);
+            A.CallTo( () => controlDevice.Control( NativeSpiConnection.SPI_IOC_WR_BITS_PER_WORD, ref bitsPerWord ) )
+                .MustHaveHappened( Repeated.Exactly.Once );
+
+            A.CallTo( () => controlDevice.Control( NativeSpiConnection.SPI_IOC_RD_BITS_PER_WORD, ref bitsPerWord ) )
+                .MustHaveHappened( Repeated.Exactly.Once );
         }
 
         [Test]
         public void Should_it_write_the_spi_mode_to_the_control_device() {
             var spiMode = (UInt32)SPI_MODE;
             
-            controlDevice
-                .CallsTo(device => device.Control(NativeSpiConnection.SPI_IOC_WR_MODE, ref spiMode))
+            A.CallTo(() => controlDevice.Control(NativeSpiConnection.SPI_IOC_WR_MODE, ref spiMode))
                 .MustHaveHappened(Repeated.Exactly.Once);
 
-            controlDevice
-                .CallsTo(device => device.Control(NativeSpiConnection.SPI_IOC_RD_MODE, ref spiMode))
+            A.CallTo(() => controlDevice.Control(NativeSpiConnection.SPI_IOC_RD_MODE, ref spiMode))
                 .MustHaveHappened(Repeated.Exactly.Once);
         }
 
@@ -165,26 +162,25 @@ namespace Tests.Raspberry.IO.SerialPeripheralInterface.NativeSpiConnectionSpecs
 
         protected override void EstablishContext() {
             // SPI control structure we expect to see during the P/Invoke call
-            controlStructure = new SpiTransferControlStructure {
+            controlStructure = new SpiTransferControlStructure
+            {
                 BitsPerWord = BITS_PER_WORD,
                 Length = 5,
                 Delay = DELAY,
                 ChipSelectChange = 1,
                 Speed = SPEED_IN_HZ
             };
-            
-            controlDevice = A.Fake<ISpiControlDevice>();
-            controlDevice
-                .CallsTo(device => device.Control(A<uint>.Ignored, ref controlStructure))
-                .WithAnyArguments()
-                .Returns(IOCTL_PINVOKE_RESULT_CODE);
 
-            connection = new NativeSpiConnection(controlDevice);
+            controlDevice = A.Fake<ISpiControlDevice>();
+            A.CallTo( () => controlDevice.Control( A<uint>.Ignored, ref controlStructure ) )
+                .WithAnyArguments()
+                .Returns( IOCTL_PINVOKE_RESULT_CODE );
+
+            connection = new NativeSpiConnection( controlDevice );
 
             buffer = A.Fake<ISpiTransferBuffer>();
-            buffer
-                .CallsTo(b => b.ControlStructure)
-                .Returns(controlStructure);
+            A.CallTo( () => buffer.ControlStructure )
+                .Returns( controlStructure );
         }
 
         protected override void BecauseOf() {
@@ -193,9 +189,8 @@ namespace Tests.Raspberry.IO.SerialPeripheralInterface.NativeSpiConnectionSpecs
 
         [Test]
         public void Should_the_buffers_control_structure_be_sent_to_the_IOCTL_device() {
-            controlDevice
-                .CallsTo(device => device.Control(SPI_IOC_MESSAGE_1, ref controlStructure))
-                .MustHaveHappened(Repeated.Exactly.Once);
+            A.CallTo( () => controlDevice.Control( SPI_IOC_MESSAGE_1, ref controlStructure ) )
+                .MustHaveHappened( Repeated.Exactly.Once );
         }
 
         [Test]
@@ -222,14 +217,14 @@ namespace Tests.Raspberry.IO.SerialPeripheralInterface.NativeSpiConnectionSpecs
 
         protected override void EstablishContext() {
             controlDevice = A.Fake<ISpiControlDevice>();
-            controlDevice
-                .CallsTo(device => device.Control(A<uint>.Ignored, A<SpiTransferControlStructure[]>.Ignored))
-                .Returns(IOCTL_PINVOKE_RESULT_CODE);
+            A.CallTo( () => controlDevice.Control( A<uint>.Ignored, A<SpiTransferControlStructure[]>.Ignored ) )
+                .Returns( IOCTL_PINVOKE_RESULT_CODE );
 
-            connection = new NativeSpiConnection(controlDevice);
+            connection = new NativeSpiConnection( controlDevice );
 
             // SPI control structure we expect to see during the P/Invoke call
-            controlStructure = new SpiTransferControlStructure {
+            controlStructure = new SpiTransferControlStructure
+            {
                 BitsPerWord = BITS_PER_WORD,
                 Length = 5,
                 Delay = DELAY,
@@ -238,18 +233,14 @@ namespace Tests.Raspberry.IO.SerialPeripheralInterface.NativeSpiConnectionSpecs
             };
 
             buffer = A.Fake<ISpiTransferBuffer>();
-            buffer
-                .CallsTo(b => b.ControlStructure)
-                .Returns(controlStructure);
-            
+            A.CallTo( () => buffer.ControlStructure )
+                .Returns( controlStructure );
+
             // setup fake collection to return our "prepared" fake buffer
             collection = A.Fake<ISpiTransferBufferCollection>();
-            collection
-                .CallsTo(c => c.Length)
-                .Returns(1);
-            collection
-                .CallsTo(c => c.GetEnumerator())
-                .ReturnsLazily(call => new List<ISpiTransferBuffer>{buffer}.GetEnumerator());
+            A.CallTo( () => collection.Length ).Returns( 1 );
+            A.CallTo( () => collection.GetEnumerator() )
+                .ReturnsLazily( call => new List<ISpiTransferBuffer> {buffer}.GetEnumerator() );
         }
 
         protected override void BecauseOf() {
@@ -258,9 +249,9 @@ namespace Tests.Raspberry.IO.SerialPeripheralInterface.NativeSpiConnectionSpecs
 
         [Test]
         public void Should_the_buffers_control_structure_be_sent_to_the_IOCTL_device() {
-            controlDevice
-                .CallsTo(device => device.Control(SPI_IOC_MESSAGE_1, A<SpiTransferControlStructure[]>.That.Matches(s => Predicate(s))))
-                .MustHaveHappened(Repeated.Exactly.Once);
+            A.CallTo( () => controlDevice.Control( SPI_IOC_MESSAGE_1,
+                    A<SpiTransferControlStructure[]>.That.Matches( s => Predicate( s ) ) ) )
+                .MustHaveHappened( Repeated.Exactly.Once );
         }
 
         private bool Predicate(IEnumerable<SpiTransferControlStructure> control_structures) {

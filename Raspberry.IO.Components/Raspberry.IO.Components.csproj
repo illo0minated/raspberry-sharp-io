@@ -144,6 +144,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sensors\Distance\HcSr04\HcSr04Connection.cs" />
     <Compile Include="Sensors\Distance\HcSr04\Units.cs" />
+    <Compile Include="Sensors\Humidity\Htu21df\Htu21dfConnection.cs" />
     <Compile Include="Sensors\Pressure\Bmp085\Bmp085Data.cs" />
     <Compile Include="Sensors\Pressure\Bmp085\Bmp085I2cConnectionExtensionMethods.cs" />
     <Compile Include="Sensors\Pressure\Bmp085\Bmp085Precision.cs" />
@@ -151,7 +152,7 @@
     <Compile Include="Sensors\Temperature\Dht\Dht22Connection.cs" />
     <Compile Include="Sensors\Temperature\Dht\DhtConnection.cs" />
     <Compile Include="Sensors\Temperature\Dht\DhtData.cs" />
-    <Compile Include="Sensors\Temperature\Dht\InvalidChecksumException.cs" />
+    <Compile Include="InvalidChecksumException.cs" />
     <Compile Include="Sensors\Temperature\Ds18b20\Ds18b20Connection.cs" />
     <Compile Include="Sensors\VariableResistiveDividerConnection.cs" />
     <Compile Include="Sensors\Temperature\Tmp36\Tmp36Connection.cs" />

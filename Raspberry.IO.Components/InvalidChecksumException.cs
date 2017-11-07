@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace Raspberry.IO.Components.Sensors.Temperature.Dht
+namespace Raspberry.IO.Components
 {
     public class InvalidChecksumException : Exception
     {
