@@ -1,4 +1,5 @@
-﻿#region References
+
+#region References
 
 using System;
 using UnitsNet;
@@ -34,6 +35,13 @@ namespace Raspberry.IO.Components.Sensors.Temperature.Dht
         {
             get { return TimeSpan.FromMilliseconds(18); }
         }
+        
+        protected override TimeSpan HostReleaseBusInterval
+        {
+            get { throw new ArgumentException("DHT11 sensor does not have the host release time"); }
+        }
+
+        protected override bool HaveHostReleaseBus => false;
 
         protected override DhtData GetDhtData(int temperatureValue, int humidityValue)
         {
