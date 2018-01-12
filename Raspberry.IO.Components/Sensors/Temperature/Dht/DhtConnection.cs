@@ -29,7 +29,7 @@ namespace Raspberry.IO.Components.Sensors.Temperature.Dht
         private bool started;
 
         private static readonly TimeSpan timeout = TimeSpan.FromMilliseconds(100);
-        private static readonly TimeSpan bitSetUptime = new TimeSpan(10 * (26 +70) / 2); // 26µs for "0", 70µs for "1"
+        private static readonly TimeSpan bitSetUptime = new TimeSpan(10 * 50); // 26µs -> 50 for "0", 50 -> 70µs for "1"        
 
         #endregion
 
@@ -157,6 +157,16 @@ namespace Raspberry.IO.Components.Sensors.Temperature.Dht
         protected abstract TimeSpan DefaultSamplingInterval { get; }
 
         protected abstract TimeSpan WakeupInterval { get; }
+        
+        /// <summary>
+        /// Time that host use before pull down and wait for response
+        /// </summary>
+        protected abstract TimeSpan HostReleaseBusInterval { get; }
+
+        /// <summary>
+        /// If true host have a release bus that use before acquiring data 
+        /// </summary>
+        protected abstract bool HaveHostReleaseBus { get; }
 
         #endregion
 
@@ -180,6 +190,12 @@ namespace Raspberry.IO.Components.Sensors.Temperature.Dht
                 pin.Write(false);
                 HighResolutionTimer.Sleep(WakeupInterval);
                 pin.Write(true);
+                
+                if(HaveHostReleaseBus)
+                {
+                    HighResolutionTimer.Sleep(HostReleaseBusInterval);
+                    pin.Write(false);
+                } 
 
                 // Read acknowledgement from DHT
                 pin.Wait(true, timeout);
