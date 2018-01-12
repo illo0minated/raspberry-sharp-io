@@ -34,6 +34,13 @@ namespace Raspberry.IO.Components.Sensors.Temperature.Dht
         {
             get { return TimeSpan.FromMilliseconds(1); }
         }
+        
+        protected override TimeSpan HostReleaseBusInterval
+        {
+            get { return new TimeSpan(10 * 20); }          
+        }
+
+        protected override bool HaveHostReleaseBus => true;
 
         protected override DhtData GetDhtData(int temperatureValue, int humidityValue)
         {
