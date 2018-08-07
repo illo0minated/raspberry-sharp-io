@@ -1,4 +1,6 @@
-﻿Raspberry# IO
+This Poject is discontinued, try https://github.com/JTrotta/RaspberrySharp
+
+Raspberry# IO
 =============
 
 See the **[Raspberry\# IO Wiki](https://github.com/raspberry-sharp/raspberry-sharp-io/wiki)** for full documentation and samples.
