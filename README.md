@@ -1,4 +1,4 @@
-This Poject is discontinued, try https://github.com/JTrotta/RaspberrySharp
+This project is discontinued, try https://github.com/JTrotta/RaspberrySharp
 
 Raspberry# IO
 =============
