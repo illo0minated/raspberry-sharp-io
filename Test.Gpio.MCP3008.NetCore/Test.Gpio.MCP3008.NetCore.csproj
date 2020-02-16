@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="UnitsNet" Version="3.77.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Raspberry.IO.Components.NetStandard\Raspberry.IO.Components.NetStandard.csproj" />
+    <ProjectReference Include="..\Raspberry.IO.GeneralPurpose.NetStandard\Raspberry.IO.GeneralPurpose.NetStandard.csproj" />
+  </ItemGroup>
+
+</Project>

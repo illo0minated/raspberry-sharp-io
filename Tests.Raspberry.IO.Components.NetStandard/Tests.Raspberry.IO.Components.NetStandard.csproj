@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Tlc59711\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Raspberry.IO.Components.NetStandard\Raspberry.IO.Components.NetStandard.csproj" />
+    <ProjectReference Include="..\Raspberry.IO.Interop.NetStandard\Raspberry.IO.Interop.NetStandard.csproj" />
+    <ProjectReference Include="..\Tests.Raspberry.IO.NetStandard\Tests.Raspberry.IO.NetStandard.csproj" />
+  </ItemGroup>
+
+</Project>
